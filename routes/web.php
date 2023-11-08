@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\File;
@@ -27,37 +28,41 @@ use Illuminate\Support\Facades\File;
 //     dd("hallo");
 //     return view('index');
 // });
-Route::get('post/{post}', function ($slug) {
-    return view('post', [
-        'post' => Post::find($slug)
-    ]);
-})->where('post','[A-z_\-]+');
+// Route::get('post/{post}', function ($id) {
+//     $post = Post::find($id);
+//     return view('post', ["post"=>$post]);
+    // return view('post', [
+    //     'post' => Post::find($slug)
+    // ]);
+// });
+// Route::get('post/{post}', function ($id) {
+//     return view('post', [
+//         'post' => Post::find($id)
+//     ]);
+// });
+Route::get('post/{post}', function ($id) {
+    $post = Post::find($id);
 
-Route::get('post', function () {
-    return view('posts',[
-        'posts' => Post::all()
-    ]);
+    $comments = Comment::where('post_id', $id)->get();
+    // dd($comments);
+    
+    return view('post', ['item' => $post, 'comment_item' => $comments]);
 });
+
+
+// Route::get('index', function () {
+//     return view('posts',[
+//         'index' => Post::paginate(1)
+//     ]);
+// });
+// Route::get('index', function () {
+//     return view('posts', [
+//         'posts' => Post::paginate(10); // Adjust the number of posts per page as needed
+//     ]);
+// });
+
 
 Route::get('/', function () {
-    // dd("hallo routes");
-    $files =  File::files(resource_path("posts/"));
-
-    $posts = collect($files)
-    ->map(function ($file){
-        $document = YamlFrontMatter::parseFile($file);
-
-        return new Post(
-            $document->title,
-            $document->excerpt,
-            $document->date,
-            $document->body(),
-            $document->slug,
-            $document->info
-        );
-    });
-
-    return view('index',[
-        'items' => $posts
-    ]);
+ return view('index',['items' => Post::all()]);
 });
+

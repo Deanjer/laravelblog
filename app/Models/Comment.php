@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    protected $table = 'posts';
-    protected $fillable = ['title', 'excerpt', 'body', 'info'];
-
+    protected $table = 'comments';
+    protected $fillable = ['name', 'comment', 'post_id'];
 }
 
