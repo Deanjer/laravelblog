@@ -32,7 +32,7 @@
                 <div class="comments-container">
                     <div class="create-comment">
                         <h2>Add reaction</h2>
-                        <form action="" >
+                        <form action="" method="post">
                             <input type="text" value="<?php $item->id?>">
                             <label for="name">Naam</label>
                             <br>
