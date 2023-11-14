@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    <?php //dd($item); 
+    ?>
     <div class="center">
         <div class="flex-container">
             <div class="content-container">
@@ -26,14 +28,20 @@
                     <div class="comments">
 
                     </div>
-            <br>
+                    <br>
+                    <script>
+                       
+                    </script>
                     <a class="back-button" href="/">Go back</a>
                 </article>
                 <div class="comments-container">
                     <div class="create-comment">
                         <h2>Add reaction</h2>
-                        <form action="" method="post">
-                            <input type="text" value="<?php $item->id?>">
+                        <!-- action=" <?php //echo url('post/'.$item->id); 
+                                        ?>"  -->
+                        <form method="post">
+                            @csrf
+                            <input name="post_id" type="hidden" value="<?= $item->id; ?>">
                             <label for="name">Naam</label>
                             <br>
                             <input name="name" type="text">
@@ -46,6 +54,7 @@
                             <input type="submit">
                         </form>
                     </div>
+
                     <br>
                     <hr>
                     <div class="comments">

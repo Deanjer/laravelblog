@@ -7,6 +7,10 @@
 
 
 <body style="font-family: Open Sans, sans-serif">
+
+
+
+
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
@@ -23,6 +27,13 @@
                 </a>
             </div>
         </nav>
+        <br>
+        <br>
+        <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
+            <Form method="GET" action="#">
+                <input type="text" name="search" placeholder="Search" class="bg-transparent placeholder-black font-semibold text-sm">
+            </Form>
+        </div>
 
 
         <?php
@@ -107,7 +118,7 @@
         </div>
         </main>
 
-            {{ $posts ->links() }}
+        {{ $posts ->links() }}
         <footer class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
             <img src="./images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px" />
             <h5 class="text-3xl">Stay in touch with the latest posts</h5>
