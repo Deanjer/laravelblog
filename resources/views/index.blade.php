@@ -20,7 +20,7 @@
             </div>
 
             <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+                <a href="/register" class="text-xs font-bold uppercase">Register</a>
 
                 <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
@@ -41,6 +41,7 @@
         // use Carbon\Carbon;
 
         ?>
+        <p class="fixed bottom-3 right-3 bg-blue-500 text-white rounded-xl py-2 px-4 absolute">{{ session()->get('success')}}</p>
         <div class="lg:grid lg:grid-cols-3">
             <?php
             foreach ($posts as $item) {
@@ -144,5 +145,6 @@
                 </div>
             </div>
         </footer>
+        
     </section>
 </body>

@@ -12,6 +12,12 @@
 <body>
     <?php //dd($item); 
     ?>
+   
+   
+
+
+
+ 
     <div class="center">
         <div class="flex-container">
             <div class="content-container">
@@ -69,6 +75,7 @@
             </div>
         </div>
     </div>
+    
 </body>
 
 </html>

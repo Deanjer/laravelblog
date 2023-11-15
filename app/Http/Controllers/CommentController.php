@@ -23,7 +23,7 @@ class CommentController extends Controller
 
     public function store(Request $request, $id)
     {
-        $user = Comment::create($request->all());
+        // $user = Comment::create($request->all());
         // return redirect()->route('post');
         // dd($request);
         $c = new Comment;
