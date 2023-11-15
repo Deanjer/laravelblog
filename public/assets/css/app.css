@@ -39,6 +39,7 @@
     justify-content: center;
     align-items: center;
     font-size: 16px;
+    border: none;
 }
 .back-button:hover{
     background-color: rgb(70, 69, 69);
@@ -49,4 +50,17 @@
 }
 .create-comment input{
     margin-top: 10px;
+}
+.comment-card{
+    width: 50%;
+    min-height: 100px;
+    background-color: rgb(225, 224, 224);
+    border-radius: 10px;
+    /* color: white; */
+    display: flex;
+    align-items: center;
+}
+.comment-content{
+    margin-left: 20px;
+    padding: 10px;
 }

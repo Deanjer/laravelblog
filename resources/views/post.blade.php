@@ -51,7 +51,7 @@
                             <br>
                             <textarea name="comment" cols="30" rows="10"></textarea>
                             <br>
-                            <input type="submit">
+                            <input class="back-button" type="submit">
                         </form>
                     </div>
 
@@ -61,7 +61,7 @@
                         <?php
                         foreach ($comment_item as $comment) {
                             // echo $comment->post_id;
-                            echo '<br>' . $comment->comment . '<br><br>';
+                            echo '<br><div class="comment-card">' .'<div class="comment-content"><b>'.$comment->name .'</b><br>'. $comment->comment . '</div></div><br><br>';
                         }
                         ?>
                     </div>

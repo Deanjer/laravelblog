@@ -34,19 +34,33 @@ Route::post('post/{post}', [CommentController::class, 'store']);
 //  return view('index',['items' => Post::all()]);
 // });
 
-Route::get('/', function () {
-    $posts = Post::paginate(3); // You can change the number 10 to the desired number of items per page
-    // dd(request('search'));
-    return view('index', compact('posts'));
+// Route::get('/', function () {
+//     $posts = Post::paginate(3); // You can change the number 10 to the desired number of items per page
+//     // dd(request('search'));
+//     return view('index', compact('posts'));
 
     
+//     $posts = Post::latest();
+//     if(request('search')){
+//         $posts->where('title', 'like', '%'.request('search').'%');
+//     }
+
+//     return view('index',[
+//         'posts' =>$posts->get(),
+//         'index', compact('posts')
+//     ]);
+// });
+
+Route::get('/', function () {
     $posts = Post::latest();
-    if(request('search')){
-        $posts->where('title', 'like', '%'.request('search').'%');
+
+    if (request('search')) {
+        $posts->where('title', 'like', '%' . request('search') . '%')
+              ->orWhere('excerpt', 'like', '%' . request('search') . '%');
     }
 
-    return view('index',[
-        'posts' =>$posts->get(),
-        'index', compact('posts')
-    ]);
+    $posts = $posts->paginate(3);
+
+    return view('index', compact('posts'));
 });
+  
