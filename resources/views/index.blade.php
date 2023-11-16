@@ -18,13 +18,35 @@
                     <img src="./images/logo.svg" alt="Laracasts Logo" width="165" height="16" />
                 </a>
             </div>
+            <!-- sign in and out -->
 
-            <div class="mt-8 md:mt-0">
+            <div class="mt-8 md:mt-0 flex items-center">
+                @auth
+                <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name}}</span>
+                <!-- logout -->
+                <form action="/logout" method="POST" class="text-xs font-semibold text-blue-500 ml-6">
+                    @csrf
+                    <button type="submit">Log Out</button>
+                </form>
+                @else
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
+                @endauth
+            </div>
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                    Subscribe for Updates
-                </a>
+
+
+
+
+
+
+
+
+
+
+            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                Subscribe for Updates
+            </a>
             </div>
         </nav>
         <br>
@@ -36,12 +58,8 @@
         </div>
 
 
-        <?php
-        // require './../vendor/autoload.php';
-        // use Carbon\Carbon;
-
-        ?>
-        <p class="fixed bottom-3 right-3 bg-blue-500 text-white rounded-xl py-2 px-4 absolute">{{ session()->get('success')}}</p>
+    
+        <p class="fixed bottom-3 left-3 bg-blue-500 text-white rounded-xl py-2 px-4 absolute">{{ session()->get('success')}}</p>
         <div class="lg:grid lg:grid-cols-3">
             <?php
             foreach ($posts as $item) {
@@ -145,6 +163,6 @@
                 </div>
             </div>
         </footer>
-        
+
     </section>
 </body>

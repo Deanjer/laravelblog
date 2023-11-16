@@ -5,6 +5,7 @@ use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\File;
@@ -39,3 +40,7 @@ Route::get('/', function () {
 
 route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 route::post('register', [RegisterController::class, 'userstore'])->middleware('guest');
+
+route::get('login', [SessionsController::class, 'create'])->middleware('guest');
+route::post('sessions', [SessionsController::class, 'store'])->middleware('guest');
+route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');

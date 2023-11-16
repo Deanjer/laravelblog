@@ -5,42 +5,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- <link rel="stylesheet" href="/assets/css/app.css"> -->
     <title>Blog posts</title>
 </head>
 
-<body>
-    <?php //dd($item); 
-    ?>
-   
-   
+<body style="font-family: Open Sans, sans-serif">
 
 
 
- 
-    <div class="center">
-        <div class="flex-container">
-            <div class="content-container">
-                <article>
-                    <h1 class="title"><?= $item->title; ?></h1>
-                    <img class="top-image" src="/images/illustration-5.png" alt="Blog Post illustration" class="rounded-xl" />
-                    <div>
-                        <?= $item->info; ?>
-                        <br>
-                        <br>
-                        <?= $item->excerpt; ?>
-                    </div>
 
-                    <div class="comments">
+    <section class="px-6 py-8">
+        <nav class="md:flex md:justify-between md:items-center">
+            <div>
+                <a href="/">
+                    <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16" />
+                </a>
+            </div>
+            <!-- sign in and out -->
 
-                    </div>
+            <div class="mt-8 md:mt-0 flex items-center">
+                @auth
+                <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name}}</span>
+                <!-- logout -->
+                <form action="/logout" method="POST" class="text-xs font-semibold text-blue-500 ml-6">
+                    @csrf
+                    <button type="submit">Log Out</button>
+                </form>
+                @else
+                <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
+                @endauth
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                Subscribe for Updates
+            </a>
+            </div>
+        </nav>
+
+
+
+
+
+        <div class="mx-auto text-center mt-10">
+            <article>
+                <h1 class="text-xxl font-bold uppercase"><?= $item->title; ?></h1>
+                <img style="width: 500px;" class="mt-5 top-image rounded-xl mx-auto text-center" src="/images/illustration-5.png" alt="Blog Post illustration" />
+                <div>
+                    <p class="mt-5"> <?= $item->info; ?></p>
                     <br>
-                    <script>
-                       
-                    </script>
-                    <a class="back-button" href="/">Go back</a>
-                </article>
-                <div class="comments-container">
+                    <p><?= $item->excerpt; ?></p>
+                </div>
+
+                <div class="comments">
+
+                </div>
+                <br>
+                <script>
+
+                </script>
+                <a class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500" href="/">Go back</a>
+
+                <div class="">
                     <div class="create-comment">
                         <h2>Add reaction</h2>
                         <!-- action=" <?php //echo url('post/'.$item->id); 
@@ -67,15 +107,38 @@
                         <?php
                         foreach ($comment_item as $comment) {
                             // echo $comment->post_id;
-                            echo '<br><div class="comment-card">' .'<div class="comment-content"><b>'.$comment->name .'</b><br>'. $comment->comment . '</div></div><br><br>';
+                            echo '<br><div class="comment-card">' . '<div class="comment-content"><b>' . $comment->name . '</b><br>' . $comment->comment . '</div></div><br><br>';
                         }
                         ?>
                     </div>
                 </div>
-            </div>
         </div>
-    </div>
-    
+        </article>
+        <footer class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+            <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px" />
+            <h5 class="text-3xl">Stay in touch with the latest posts</h5>
+            <p class="text-sm mt-3">
+                Promise to keep the inbox clean. No bugs.
+            </p>
+
+            <div class="mt-10">
+                <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
+                    <form method="POST" action="#" class="lg:flex text-sm">
+                        <div class="lg:py-3 lg:px-5 flex items-center">
+                            <label for="email" class="hidden lg:inline-block">
+                                <img src="/images/mailbox-icon.svg" alt="mailbox letter" />
+                            </label>
+
+                            <input id="email" type="text" placeholder="Your email address" class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none" />
+                        </div>
+
+                        <button type="submit" class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </footer>
 </body>
 
 </html>
